@@ -1,0 +1,1069 @@
+day09笔记
+⼀、JavaScript语⾔
+1、JavaScript 简称 js，⽤来做⽹⻚交互效果
+2、交互效果
+下拉菜单
+轮播图
+购物⻋
+商品列表渲染
+登录注册验证
+前后端交互
+3、JavaScript既可以做前端⾥⾯的交互效果，也可以写后端（node.js）
+
+⼆、Node.js
+1、Node 是代码执⾏环境（后端环境）
+2、openclaw（⼩⻰虾）安装，依赖 node.js
+3、opencode（国内版本）安装，依赖 node.js
+4、很多相关的AI⼯具环境配置，都需要依赖 node.js
+5、node.js 开发使⽤的语⾔就是JavaScript
+
+三、JavaScript运⾏
+1、python语⾔代码执⾏，⾸先得安装⼀个python解析器
+2、JavaScript语⾔代码执⾏，不需要你额外安装任何其他的环境，只要有浏览器就可以
+3、JavaScript是内嵌到浏览器⾥⾯的，所以你不需要额外安装其他的环境。浏览器只能解析三种语⾔，分别是
+html、css、js
+4、编写JavaScript，只需要在html⽂件中使⽤ script 标记就可以
+5、js输出⽅法
+1
+
+<script>
+
+2
+
+// js 输出⽅法
+
+3
+
+// document.write() 在⽹⻚中输出⽂本信息，可以解析标记
+
+4
+
+// document.write('hello，美⼥帅哥！1<br>')
+
+5
+
+// document.write('hello，美⼥帅哥！2<br>')
+
+6
+
+// document.write('hello，美⼥帅哥！3')
+
+7
+8
+
+// document.write('<h1>⽼⼤哥来了</h1>')
+
+9
+
+// document.write('<p>⼩⽼弟来了</p>')
+
+10
+
+11
+
+// alert() ⻚⾯弹窗，不⽀持标记解析
+
+12
+
+// alert('温馨提示：此⽹站可能存在⻛险... \n 丁致宇就是喜欢访问')
+
+13
+14
+
+// console.log() 可以在浏览器控制台输出信息
+
+15
+
+// console.log('hello，我只能在控制台⾥⾯看到')
+
+16
+
+// 错误信息
+
+17
+
+// console.error('第18⾏代码存在语法错误')
+
+18
+
+// 警告信息
+
+19
+
+// console.warn('hello')
+
+20
+21
+
+// 打印⽅法
+
+22
+
+// print('打印⽂件')
+
+23
+
+// document.querySelector('button').onclick = ()=>{
+
+24
+
+//
+
+25
+
+// }
+
+26
+
+</script>
+
+print()
+
+四、JavaScrip注释
+1、单⾏注释
+语法
+// 代码意思
+
+1
+
+2、多⾏注释
+语法
+1
+
+/*
+代码意思
+
+2
+3
+
+*/
+
+五、变量
+1、声明变量
+1
+
+// 1、使⽤ var 关键字来声明
+
+2
+
+// console.log(a) // undefined，告诉咱们没有赋值，不是这个变量未定义
+
+3
+
+// var a = 10
+
+4
+
+// console.log(a)
+
+5
+6
+
+/*
+
+7
+
+问题：变量声明提升
+
+8
+
+var a --- 变量声明
+
+9
+
+console.log(a) --- 变量已经声明了，只是没有值，所以返回 undefined
+
+10
+
+a = 10 --- 变量赋值
+
+11
+
+console.log(a) --- 10，因为已经赋值了
+
+12
+
+*/
+
+13
+
+// var c // 只是声明没有赋值，在js⾥⾯之前是运⾏存在的
+
+14
+
+// console.log(c) // undefined
+
+15
+16
+
+// 允许重复声明
+
+17
+
+// var a = 10
+
+18
+
+// var a = 20
+
+19
+
+// console.log(a)
+
+20
+21
+22
+
+// 2、使⽤ let 关键字来声明，不允许变量声明提升，不能再前⾯输出
+
+23
+
+// 不允许重复声明
+
+24
+
+// console.log(b) // 报错，这种设计才是合理的
+
+25
+
+// let b = 20
+
+26
+
+// console.log(b)
+
+27
+28
+
+// let b
+
+29
+
+// console.log(b) // undefined
+
+30
+31
+
+// 3、使⽤ const 关键字来声明，声明常量（就是不能被修改的数据）
+
+32
+
+// let username = '张三'
+
+33
+
+// username = '王五'
+
+34
+
+// console.log(username)
+
+35
+36
+
+const username = '张三'
+
+37
+
+// 不能被修改，因为是常量
+
+38
+
+username = '王五'
+
+39
+
+console.log(username)
+
+2、数据类型
+基本（原始）数据类型
+number 数⼦类型
+string 字符串类型
+boolean 布尔类型（true、false）
+undefined 未定义类型
+null 空类型
+引⽤（复合、复杂）数据类型
+array 数组类型
+object 对象类型
+function 函数类型
+查看数据类型
+typeof()
+
+六、js基本数据类型
+1
+
+<!DOCTYPE html>
+
+2
+
+<html lang="en">
+
+3
+
+<head>
+
+4
+
+<meta charset="UTF-8">
+
+5
+6
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+
+7
+
+</head>
+
+8
+
+<body>
+
+9
+
+<script>
+
+10
+
+// number
+
+11
+
+// let data = 10
+
+12
+
+// let data = 12.66
+
+13
+
+// console.log(data)
+
+14
+
+// console.log(typeof(data), typeof data)
+
+15
+
+// console.log(typeof 10) // number
+
+16
+17
+
+// string
+
+18
+
+// let data = 'abc'
+
+19
+
+// console.log(data)
+
+20
+
+// console.log(typeof data) // string
+
+21
+22
+
+// boolean
+
+23
+
+// let data = true
+
+24
+
+// console.log(data)
+
+25
+
+// console.log(typeof data) // boolean
+
+26
+27
+
+// console.log(10 > 20) // false
+
+28
+
+// console.log(10 < 20) // true
+
+29
+30
+
+// undefined 未定义，当⼀个变量声明了，没有赋值的时候返回 undefined
+
+31
+
+// 在js⾥⾯，变量声明其实内部在构建的时候分为两步，1、变量声明
+
+32
+
+// let data
+
+33
+
+// console.log(data) // undefined
+
+34
+
+// console.log(typeof data) // undefined
+
+2、变量赋值
+
+35
+// null 空类型，起了⼀个占位的作⽤，不知道当前这个变量值的类型是什么的时候，可以使⽤null先
+
+36
+
+占个位，作为初始值
+37
+
+let data = null
+
+38
+
+console.log(data)
+
+39
+40
+
+console.log(typeof data) // object
+</script>
+
+41
+
+</body>
+
+42
+
+</html>
+
+七、数组类型
+1、array 数组，是⼀个可以存储多个数据的容器
+1
+
+let arr = ['a', 'b', 'c']
+
+2、索引（下标、index）
+数组在创建的时候会默认为每⼀个元素添加⼀个编号，⽤于数组的操作，默认是从0开始的，把这个编号称之为索
+引
+
+1
+
+<!DOCTYPE html>
+
+2
+
+<html lang="en">
+
+3
+
+<head>
+
+4
+
+<meta charset="UTF-8">
+
+5
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+6
+
+<title>Document</title>
+
+7
+
+</head>
+
+8
+
+<body>
+
+9
+
+<script>
+
+10
+
+// 创建数组
+
+11
+
+// let arr = ['a', 'b', 'c']
+
+12
+
+// console.log(arr)
+
+13
+
+// console.log(typeof arr) // object
+
+14
+15
+
+let arr = ['a', 'b', 'c', '666', '呵呵']
+
+16
+
+console.log(arr)
+
+17
+
+console.log(arr[0])
+
+18
+
+console.log(arr[1])
+
+19
+
+console.log(arr[2])
+
+20
+
+console.log(arr.length) // 3 表示的是数组的⻓度
+console.log(arr[arr.length-1]) // 表示动态的拿到数组的最后⼀个元素
+
+21
+22
+
+</script>
+
+23
+
+</body>
+
+24
+
+</html>
+
+3、数组操作
+1
+
+let arr = ['a', 'b', 'c', '666', '呵呵']
+
+2
+
+// 增加操作
+
+3
+
+arr[5] = 'abc'
+
+4
+
+// 修改操作
+
+5
+
+arr[0] = '张三'
+
+6
+
+// 删除操作
+
+7
+
+delete arr[1]
+
+8
+
+console.log(arr)
+
+4、数组⽅法
+1
+
+// 数组⽅法
+
+2
+
+let arr = ['a', 'b', 'c', '666', '呵呵']
+
+3
+
+// 数组添加⽅法（尾部）
+
+4
+
+// arr.push('嘿嘿')
+
+5
+
+// 数组添加⽅法（头部）
+
+6
+
+// arr.unshift('呵')
+
+7
+8
+
+// 删除⽅法（尾部）
+
+9
+
+// arr.pop()
+
+10
+
+// 删除⽅法（头部）
+
+11
+
+// arr.shift()
+
+12
+13
+
+/*
+
+14
+
+splice() 组合⽅法
+
+15
+
++ 参数1表示从什么位置开始
+
+16
+
++ 参数2表示删除的项数
+
+17
+
++ 参数3表示添加
+
+18
+
+*/
+
+19
+
+// 删除操作
+
+20
+
+// arr.splice(0, 1)
+
+21
+
+// arr.splice(0, 2)
+
+22
+23
+
+// 替换操作
+
+24
+
+// arr.splice(0, 1, '张三')
+
+25
+26
+
+// 添加操作（插⼊）
+
+27
+
+// 注意点：当进⾏插⼊元素操作的时候，第⼆个参数必须设置为0，不然就变成替换操作了
+
+28
+
+// arr.splice(1, 0, '张三', '王五')
+
+29
+30
+
+console.log(arr)
+
+31
+
+// slice() 截取⽅法，不包含结束位置
+
+32
+
+result = arr.slice(0, 3)
+
+33
+34
+
+console.log(result)
+
+⼋、函数类型
+1、语法
+1
+
+// 函数声明
+
+2
+
+function fn(){
+
+3
+
+console.log('hello，我是函数')
+
+4
+
+}
+
+5
+6
+
+// 函数调⽤
+
+7
+
+fn()
+
+2、函数参数
+1
+
+<!DOCTYPE html>
+
+2
+
+<html lang="en">
+
+3
+
+<head>
+
+4
+
+<meta charset="UTF-8">
+
+5
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+6
+
+<title>Document</title>
+
+7
+
+</head>
+
+8
+
+<body>
+
+9
+
+<script>
+
+10
+
+// function add(a, b){
+
+11
+
+//
+
+12
+
+// }
+
+13
+
+// add(10, 20)
+
+console.log(a + b)
+
+14
+15
+
+// 函数参数的默认值
+
+16
+
+function login(username='admin', password){
+
+17
+
+document.write('你的⽤户名:' + username)
+
+18
+
+console.log(password)
+
+19
+
+}
+
+20
+
+login('张三')
+
+21
+
+</script>
+
+22
+
+</body>
+
+23
+
+</html>
+
+3、函数返回值
+1
+
+// 函数返回值
+
+2
+
+function add(a, b){
+
+3
+
+return a + b
+
+4
+
+}
+
+5
+
+let result = add(10, 20)
+
+6
+
+console.log(result)
+
+7
+8
+
+// 注意点：如果⼀个函数没有返回值的话，接收的是undefined
+
+9
+
+function fn(){
+
+10
+
+console.log('hello')
+
+11
+
+}
+
+12
+
+console.log(fn()) // undefined
+
+九、计算器
+1
+
+<!DOCTYPE html>
+
+2
+
+<html lang="en">
+
+3
+
+<head>
+
+4
+
+<meta charset="UTF-8">
+
+5
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+6
+
+<title>Document</title>
+
+7
+
+</head>
+
+8
+
+<body>
+
+9
+
+<input type="text" class="txt1">
+
+10
+
++
+
+11
+
+<input type="text" class="txt2">
+
+12
+
+<button class="calc">=</button>
+
+13
+
+<input type="text" class="result">
+
+14
+15
+16
+
+<button class="clear">clear</button>
+
+17
+
+<script>
+
+18
+
+// 第⼀步：要操作标记做某些事情，必须先把标记拿到
+
+19
+
+// document.querySelector() 根据css选择器拿到标记
+
+20
+
+// 注意点：如果没有拿到对应的标记，那么返回的是null
+
+21
+
+// console.log(document.querySelector('.txt1'))
+
+22
+
+// console.log(document.querySelector('.txt2'))
+
+23
+
+// console.log(document.querySelector('button'))
+
+24
+
+25
+
+const txt1 = document.querySelector('.txt1')
+
+26
+
+const txt2 = document.querySelector('.txt2')
+
+27
+
+const btn = document.querySelector('.calc')
+
+28
+
+const result = document.querySelector('.result')
+
+29
+
+const clear = document.querySelector('.clear')
+
+30
+31
+
+// 第⼆步：需要把表单框⾥⾯的数据拿出来进⾏计算
+
+32
+
+// input表单框⾥⾯的数据是存储在value属性⾥⾯的
+
+33
+
+// 语法：获取到的标记.value
+
+34
+
+// console.log(txt1.value)
+
+35
+36
+
+// 第三步：要进⾏计算需要拿到的value值应该是输⼊后的
+
+37
+
+// 通过事件调⽤函数⽅式
+
+38
+
+// 事件指的是⽤户在⻚⾯中⼀些列的操作，例如：⿏标点击、双击、移⼊移出...
+
+39
+
+// 函数特点：不调⽤不会执⾏
+
+40
+
+// 表示当⽤户点击按钮这个标记的时候，事件才会去调⽤函数，实现了⽤户输⼊后再去获取value的操
+作
+
+41
+
+btn.onclick = function(){
+
+42
+
+// 注意点：input⾥⾯输⼊的数据，类型是string
+
+43
+
+// Number() 可以把其他类型转成数字类型
+
+44
+
+result.value = Number(txt1.value) + Number(txt2.value)
+
+45
+
+}
+
+46
+47
+
+// 当点击按钮的时候清空input的输⼊的值
+
+48
+
+clear.onclick = function(){
+
+49
+
+txt1.value = ''
+
+50
+
+txt2.value = ''
+
+51
+
+result.value = ''
+
+52
+
+}
+
+53
+
+</script>
+
+54
+55
+
+</body>
+
+56
+
+</html>
+
+

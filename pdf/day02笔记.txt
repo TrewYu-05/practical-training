@@ -1,0 +1,516 @@
+day02笔记
+一、作业
+1、从“城市-区域”字段中拆分两级信息
+数据列： locations = ["北京市-海淀区", "上海市-浦东新区", "广州市-天河区"]
+拆分为两个列表：
+→ cities = ["北京市", "上海市", "广州市"]
+→ districts = ["海淀区", "浦东新区", "天河区"]
+locations = ["北京市-海淀区", "上海市-浦东新区", "广州市-天河区"]
+# 市
+cities = []
+# 区
+districts = []
+# 遍历操作
+for loc in locations:
+# 北京市-海淀区
+if '-' in loc:
+# 拆包操作
+c, d = loc.split('-')
+cities.append(c)
+districts.append(d)
+print(cities)
+print(districts)
+print('-' * 20)
+# 列表
+# lis = ['张三', '李四', '坤坤']
+# print(lis[0], lis[1], lis[2])
+# name1, name2, name3 = ['张三', '李四', '坤坤']
+# print(name1, name2, name3)
+# 元祖
+# t1, t2 = ('张三', '李四')
+# print(t1, t2)
+# 字符串
+# n1, n2, n3 = '123'
+# print(n1, n2, n3)
+
+2、统计字符串的个数
+text = 'abcdffqdafg'
+"""
+
+counter = {
+a: 2,
+b: 1
+}
+"""
+counter = {}
+# 遍历文本数据
+for char in text:
+# 判断下某个字符是否在字典中存在，把字符串中的字符当成字典中的键来使用 key: value 形式（键值对）
+# char ---> 'a'
+# char ---> 'b'
+# ...
+if char in counter:
+# 说明已经存在
+# counter[char] ---> 值是数字
+counter[char] += 1
+else:
+# 说明不存在，把这个字符串当成字典的键添加进字典，并赋值为1
+counter[char] = 1
+print(counter)
+# print(counter['a'])
+# print(counter['b'])
+# print(counter.get('a'))
+
+二、字符串练习题
+1、从“姓名(英文)”字段提取英文名
+数据： names = ["张三(Tom)", "李四(Lucy)", "王五(Bob)"]
+提取英文名： ['Tom', 'Lucy', 'Bob']
+1、从“姓名(英文)”字段提取英文名
+数据：`names = ["张三(Tom)", "李四(Lucy)", "王五(Bob)"]`
+提取英文名：`['Tom', 'Lucy', 'Bob']`
+"""
+names = ["张三(Tom)", "李四(Lucy)", "王五(Bob)"]
+english_names = []
+for name in names:
+if '(' in name and ')' in name:
+# find() 查找字符串某个字符的位置，返回的是索引
+# start 表示的就是提取字符串里面字符的开始位置
+start = name.find('(') + 1
+# end 表示的就是提取字符串里面字符的结束位置。因为切片的时候，是不包含结束位置的
+end = name.find(')')
+en_name = name[start:end]
+english_names.append(en_name)
+print(english_names) # ['Tom', 'Lucy', 'Bob']
+
+2、清洗含单位的数值字段（"100kg" → 100）
+
+数据： weights = ["100kg", "200 kg", "50.5kg", "300g", "1.5 t"]
+统一转换为“千克”数值（假设：1t = 1000kg, 1g = 0.001kg）：
+结果： [100.0, 200.0, 50.5, 0.3, 1500.0]
+# 脏数据
+weights = ["100kg", "200 kg", "50.5kg", "300g", "1.5 t"]
+result = []
+for w in weights:
+# 解决空格问题
+w = w.replace(' ', '')
+# 单位的转换
+if w.endswith('kg'):
+num = float(w[:-2])
+result.append(num)
+elif w.endswith('g'):
+num = float(w[:-1]) * 0.001
+result.append(num)
+elif w.endswith('t'):
+num = float(w[:-1]) * 1000
+result.append(num)
+print(result)
+
+3、生成数据脱敏后的展示字段（姓名、手机、邮箱）
+原始数据：
+data = [
+{"name": "张三丰", "phone": "13812345678", "email": "zhang@example.com"},
+{"name": "李莫愁", "phone": "13987654321", "email": "li@example.org"}
+]
+
+脱敏规则：
+姓名：保留姓，名用 * 代替 → "张**"
+手机： 138****5678
+邮箱： z***@example.com
+data = [
+{"name": "张三丰", "phone": "13812345678", "email": "zhang@example.com"},
+{"name": "李莫愁", "phone": "13987654321", "email": "li@example.org"}
+]
+masked_data = []
+# d 表示的是列表中的每一个字典
+for d in data:
+# 处理姓名
+name = d['name']
+
+masked_name = name[0] + '*' * (len(name) - 1) if len(name) > 1 else name
+# 处理电话号码
+phone = d['phone']
+masked_phone = phone[:3] + '****' + phone[7:] if len(phone) == 11 else phone
+# 处理邮箱地址
+email = d['email']
+# 邮箱格式的简单验证
+if '@' in email:
+local, domain = email.split('@')
+masked_local = local[0] + '***' if len(local) > 1 else local
+masked_email = masked_local + '@' + domain
+else:
+masked_email = email
+# 添加进列表中
+masked_data.append({
+'name': masked_name,
+'phone': masked_phone,
+'email': masked_email
+})
+print(masked_data)
+
+三、三目表达式
+1、名称：三元运算符、条件表达式
+2、是对双分支选择结构的简化操作
+3、语法
+# x = 10
+# y = 20
+# if x > y:
+#
+
+print(x)
+
+# else:
+#
+
+print(y)
+
+# x = 30
+# y = 20
+# if 前面放的是满足条件的结果，else 后面放的是不满足条件的结果
+# result = x if x > y else y
+# print(result)
+# 根据年龄判断是否成年
+age = 20
+result = '成年人' if age >= 18 else '未成年人'
+print(result)
+
+四、数据处理练习题
+1、在处理文件路径时，可以使用 .rfind() 来查找最后一个斜杠的位置，从而提取文件名。
+# file_path = "/home/user/documents/report.txt"
+# 0 从左边往右边进行查找
+# print(file_path.find('/'))
+# 20 从右边往左边查找
+# print(file_path.rfind('/'))
+# 注意点：find() 和 rfind() 如果没有查找找对应的字符的位置会返回-1
+# print(file_path.find('-'))
+# print(file_path.rfind('-'))
+file_path = "/home/user/documents/report.txt"
+last_index = file_path.rfind("/")
+if last_index != -1:
+file_name = file_path[last_index+1:]
+print(file_name)
+else:
+print('没有找到')
+
+2、从URL中提取参数 url = "https://api.example.com/v1/users?name=Alice&age=30&city=Beijing"
+需要提取的数据： name=Alice&age=30&city=Beijing
+输出结果： {'name': 'Alice', 'age': '30', 'city': 'Beijing'}
+url = "https://api.example.com/v1/users?name=Alice&age=30&city=Beijing"
+if '?' in url:
+query_str = url.split('?')[1] # name=Alice&age=30&city=Beijing
+# 把字符串转成字典形式
+params = {}
+# 先进行切割处理
+items = query_str.split('&') # ['name=Alice', 'age=30', 'city=Beijing']
+# 遍历操作
+for it in items:
+# name=Alice
+# age=30
+# city=Beijing
+key, value = it.split('=')
+params[key] = value
+print(params) # {'name': 'Alice', 'age': '30', 'city': 'Beijing'}
+
+五、字典和列表组合操作
+1、数据
+school_data = {
+"学校名称": "英才实验中学",
+"年级": "高一年级",
+
+"班级列表": [
+{
+"班级ID": "G1-01",
+"班级名称": "高一(1)班",
+"班主任": {
+"教师ID": "T001",
+"姓名": "张伟",
+"性别": "男",
+"联系电话": "13800138001",
+"入职年份": 2015,
+"负责科目": ["语文", "德育"]
+},
+"任课教师": [
+{
+"教师ID": "T002",
+"姓名": "李芳",
+"科目": "数学",
+"职称": "高级教师"
+},
+{
+"教师ID": "T003",
+"姓名": "王强",
+"科目": "英语",
+"职称": "一级教师"
+},
+{
+"教师ID": "T004",
+"姓名": "赵敏",
+"科目": "物理",
+"职称": "二级教师"
+}
+],
+"班级信息": {
+"成立日期": "2024-09-01",
+"最大容量": 45,
+"当前人数": 42,
+"教室编号": "A201",
+"状态": "正常"
+},
+"学生名单": [
+{
+"学号": "S2024001",
+"姓名": "陈小明",
+"性别": "男",
+"出生日期": "2008-03-15",
+"家庭信息": {
+"父亲姓名": "陈建国",
+"母亲姓名": "李秀英",
+"联系电话": "13900139001",
+"家庭住址": "北京市朝阳区XX路XX号"
+},
+"选课情况": ["数学", "物理", "英语", "语文", "体育", "美术"],
+"学期成绩": {
+
+"2024秋季学期": {
+"语文": 88,
+"数学": 92,
+"英语": 85,
+"物理": 89,
+"体育": 95,
+"美术": 90
+},
+"2025春季学期": {
+"语文": 90,
+"数学": 94,
+"英语": 88,
+"物理": 91,
+"体育": 96,
+"美术": 92
+}
+},
+"考勤记录": {
+"2024秋季学期": {
+"出勤天数": 92,
+"缺勤天数": 3,
+"迟到次数": 2
+},
+"2025春季学期": {
+"出勤天数": 88,
+"缺勤天数": 1,
+"迟到次数": 0
+}
+},
+"奖惩记录": [
+{"时间": "2024-11", "类型": "奖励", "内容": "期中考试年级前十", "颁发人":
+"张伟"},
+{"时间": "2025-03", "类型": "警告", "内容": "未交作业累计3次", "处理人":
+"李芳"}
+]
+},
+{
+"学号": "S2024002",
+"姓名": "王丽丽",
+"性别": "女",
+"出生日期": "2008-07-22",
+"家庭信息": {
+"父亲姓名": "王建国",
+"母亲姓名": "赵美玲",
+"联系电话": "13900139002",
+"家庭住址": "北京市海淀区XX街XX号"
+},
+"选课情况": ["数学", "物理", "英语", "语文", "音乐", "信息技术"],
+"学期成绩": {
+"2024秋季学期": {
+"语文": 92,
+"数学": 88,
+"英语": 94,
+
+"物理": 85,
+"音乐": 98,
+"信息技术": 96
+},
+"2025春季学期": {
+"语文": 93,
+"数学": 90,
+"英语": 96,
+"物理": 87,
+"音乐": 99,
+"信息技术": 97
+}
+},
+"考勤记录": {
+"2024秋季学期": {
+"出勤天数": 95,
+"缺勤天数": 0,
+"迟到次数": 1
+},
+"2025春季学期": {
+"出勤天数": 89,
+"缺勤天数": 0,
+"迟到次数": 0
+}
+},
+"奖惩记录": [
+{"时间": "2024-12", "类型": "奖励", "内容": "校园歌手大赛冠军", "颁发人":
+"团委"},
+{"时间": "2025-01", "类型": "奖励", "内容": "编程竞赛一等奖", "颁发人":
+"王强"}
+]
+}
+]
+},
+{
+"班级ID": "G1-02",
+"班级名称": "高一(2)班",
+"班主任": {
+"教师ID": "T005",
+"姓名": "刘洋",
+"性别": "女",
+"联系电话": "13800138005",
+"入职年份": 2018,
+"负责科目": ["英语", "心理"]
+},
+"任课教师": [
+{"教师ID": "T002", "姓名": "李芳", "科目": "数学", "职称": "高级教师"},
+{"教师ID": "T001", "姓名": "张伟", "科目": "语文", "职称": "高级教师"},
+{"教师ID": "T006", "姓名": "孙浩", "科目": "化学", "职称": "一级教师"}
+],
+"班级信息": {
+
+"成立日期": "2024-09-01",
+"最大容量": 45,
+"当前人数": 44,
+"教室编号": "A202",
+"状态": "正常"
+},
+"学生名单": []
+# 学生数据可按需填充
+}
+],
+"统计信息": {
+"总班级数": 2,
+"总学生数": 42 + 0,
+
+# G1-01有42人，G1-02暂无学生
+
+"教师总数": 6,
+"最新更新时间": "2025-04-05"
+}
+}
+
+2、题目
+# 1. 打印高一(1)班班主任姓名
+# step1 = school_data['班级列表'][0]['班主任']['姓名']
+# print(step1) # 张伟
+# 2. 打印陈小明的2025春季学期数学成绩
+# step1 = school_data['班级列表'][0]['学生名单'][0]['学期成绩']['2025春季学期']['数学']
+# print(step1) # 94
+# 3. 打印王丽丽的家庭联系电话
+# step1 = school_data['班级列表'][0]['学生名单'][1]['家庭信息']['联系电话']
+# print(step1) # 13900139002
+# 4. 打印高一(1)班所有任课教师姓名
+# step1 = school_data['班级列表'][0]['任课教师']
+# for item in step1:
+#
+
+# 注意点：对于字符串来说，外层如果使用的是双引号，那么内层必须使用单引号。反之亦然
+
+#
+
+print(f'高一(1)班所有任课教师姓名: {item["姓名"]}')
+
+# 5. 统计陈小明获得的奖励次数
+step1 = school_data['班级列表'][0]['学生名单'][0]['奖惩记录']
+# result = []
+# for it in step1:
+#
+#
+
+if it['类型'] == '奖励':
+result.append(it)
+
+#
+# print(len(result))
+# result = [it for it in step1 if it['类型'] == '奖励']
+# print(len(result)) # 1
+# 6、打印陈小明所有学期各科成绩
+# step1 = school_data['班级列表'][0]['学生名单'][0]['学期成绩']
+# print(step1)
+
+step1 = school_data['班级列表'][0]['学生名单'][0]
+student = step1['学期成绩']
+# 注意点：这个是插件检测的时候，没有检测出来
+for key, scores in student.items():
+print(f'{key}')
+for subject, score in scores.items():
+print(f'
+
+{subject}: {score}')
+
+3、字典遍历
+# 字典遍历
+# dic = {'name': '张三', 'age': 18, 'gender': '男'}
+# 直接遍历字典，拿到的结果是字典的键
+# for key in dic:
+#
+
+print(key)
+
+# 遍历字典dic.keys()，拿到的结果是字典的键
+# for key in dic.keys():
+#
+
+print(key)
+
+# 遍历字典dic.values()，拿到的结果是字典的值
+# for value in dic.values():
+#
+
+print(value)
+
+# 遍历字典dic.items()，拿到的是结果是键和值
+# for key, value in dic.items():
+#
+
+print(key, value)
+
+六、综合练习
+编写函数，检测密码强度：至少8位，包含大写字母、小写字母和数字。
+输出结果
+print(check_password("Abc12345"))
+
+# True
+
+print(check_password("abc12345"))
+
+# 密码缺少: 大写字母
+
+print(check_password("ABC12345"))
+
+# 密码缺少: 小写字母
+
+print(check_password("Abcdefgh"))
+
+# 密码缺少: 数字
+
+print(check_password("Ab1"))
+
+# 密码长度至少为8位
+
+print(check_password("hello"))
+
+# 密码长度至少为8位
+
+print(check_password("HelloWorld")) # 密码缺少: 数字
+
+七、作业
+1、实现函数统计字符串中元音字母（a, e, i, o, u）的数量
+2、商品信息管理
+新增商品
+删除商品（根据id删除商品）
+
+商品某条信息更改（根据商品id，修改商品名称，价格）
+product = [
+{'id': '001', 'name': 'huawei mate80', 'price': 5699, 'count': 2}
+]
+
+

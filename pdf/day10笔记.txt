@@ -1,0 +1,2024 @@
+day10笔记
+⼀、循环结构
+1、while语法
+1
+
+// 输出1-20之间的数字
+
+2
+
+// 变量初始化
+
+3
+
+let i = 1
+
+4
+
+// i<=10 循环终⽌条件
+
+5
+
+while(i<=20){
+
+6
+
+// 输出代码
+
+7
+
+console.log(i)
+
+8
+
+// 变量更新
+
+9
+
+// i += 1
+
+10
+
+i++ // ⾃增
+
+11
+
+}
+
+2、for循环
+1
+
+for(let i=1; i<=20; i++){
+
+2
+
+console.log(i)
+
+3
+
+}
+
+3、循环⼩例⼦
+1
+
+let sum = 0
+
+2
+
+for(let i=1; i<=100; i++){
+
+3
+
+if(i%2==0){
+
+4
+
+sum += i
+
+5
+
+}
+
+6
+
+}
+
+7
+
+console.log(sum)
+
+4、循环终⽌条件
+continue 终⽌循环（终⽌的本次的循环，后续循环会继续）
+
+1
+
+// for(let i=1; i<=10; i++){
+
+2
+
+//
+
+3
+
+//
+
+4
+
+//
+
+}
+
+5
+
+//
+
+console.log(i)
+
+6
+
+// }
+
+if(i==5){
+continue
+
+7
+8
+
+// 求1-20之间的奇数
+
+9
+
+for(let i=1; i<=20; i++){
+
+10
+
+if(i%2==0){
+
+// 会把偶数给过滤掉，后⾯循环出来的都是奇数
+
+11
+12
+
+continue
+
+13
+
+}
+
+14
+
+console.log(i)
+
+15
+
+}
+
+break 直接终⽌整个循环的执⾏
+
+1
+
+for(let i=1; i<=10; i++){
+
+2
+
+if(i==5){
+
+3
+
+break
+
+4
+
+}
+
+5
+
+console.log(i)
+
+6
+
+}
+
+⼆、forEach⽅法
+1、对数组遍历的⼀种简化形式
+2、示例代码
+1
+
+let arr = ['张三', '李四', '王五']
+
+2
+3
+
+// for(let i=0; i<arr.length; i++){
+
+4
+
+//
+
+5
+
+// }
+
+console.log(arr[i])
+
+6
+7
+
+arr.forEach(function(item, index){
+
+8
+
+console.log(item, index)
+
+9
+
+})
+
+三、对象类型
+1、对象是由键值对组成
+2、对象对象类型⾥⾯分为属性和⽅法
+3、示例
+1
+
+// 描述⼀个⼈的信息
+
+2
+
+// 问题：数字表示的是具体的什么信息，在这⾥是有歧义
+
+3
+
+// let person = ['丁致宇', 20, '男', 176, 13600425678, 70]
+
+4
+5
+
+// 使⽤对象类型
+
+6
+
+// let person = {
+
+7
+
+//
+
+name: '丁致宇',
+
+8
+
+//
+
+age: 20,
+
+9
+
+//
+
+gender: '男',
+
+10
+
+//
+
+height: 176,
+
+11
+
+//
+
+tel: 13600425678,
+
+12
+
+//
+
+weight: 70
+
+13
+
+// }
+
+14
+
+// console.log(person)
+
+15
+16
+
+// 使⽤数组 + 对象形式
+
+17
+
+let student_info = [
+
+18
+
+{
+
+19
+
+name: '丁致宇',
+
+20
+
+age: 20,
+
+21
+
+gender: '男',
+
+22
+
+height: 176,
+
+23
+
+tel: 13600425678,
+
+24
+
+weight: 70
+
+25
+
+},
+
+26
+
+{
+
+27
+
+name: '陈乐',
+
+28
+
+age: 21,
+
+29
+
+gender: '男',
+
+30
+
+height: 178,
+
+31
+
+tel: 13100425678,
+
+32
+
+weight: 62
+
+33
+
+},
+
+34
+
+]
+
+35
+
+console.log(student_info)
+
+4、对象类型操作
+1
+
+// 描述⼀个⼈的信息
+
+2
+
+// 问题：数字表示的是具体的什么信息，在这⾥是有歧义
+
+3
+
+// let person = ['丁致宇', 20, '男', 176, 13600425678, 70]
+
+4
+5
+
+// 使⽤对象类型
+
+6
+
+// let person = {
+
+7
+
+//
+
+name: '丁致宇',
+
+8
+
+//
+
+age: 20,
+
+9
+
+//
+
+gender: '男',
+
+10
+
+//
+
+height: 176,
+
+11
+
+//
+
+tel: 13600425678,
+
+12
+
+//
+
+weight: 70
+
+13
+
+// }
+
+14
+
+// console.log(person)
+
+15
+16
+
+// 使⽤数组 + 对象形式
+
+17
+
+// let student_info = [
+
+18
+
+//
+
+19
+
+//
+
+name: '丁致宇',
+
+20
+
+//
+
+age: 20,
+
+21
+
+//
+
+gender: '男',
+
+22
+
+//
+
+height: 176,
+
+23
+
+//
+
+tel: 13600425678,
+
+24
+
+//
+
+weight: 70
+
+25
+
+//
+
+{
+
+},
+
+26
+
+//
+
+{
+
+27
+
+//
+
+name: '陈乐',
+
+28
+
+//
+
+age: 21,
+
+29
+
+//
+
+gender: '男',
+
+30
+
+//
+
+height: 178,
+
+31
+
+//
+
+tel: 13100425678,
+
+32
+
+//
+
+33
+
+//
+
+34
+
+// ]
+
+35
+
+// console.log(student_info)
+
+weight: 62
+},
+
+36
+37
+
+let person = {
+
+38
+
+name: '丁致宇',
+
+39
+
+age: 20,
+
+40
+
+gender: '男',
+
+41
+
+height: 176,
+
+42
+
+tel: 13600425678,
+
+43
+
+weight: 70
+
+44
+
+}
+
+45
+
+// 获取对象的值
+
+46
+
+console.log(person.name)
+
+47
+
+console.log(person['name'])
+
+48
+49
+
+// 增加属性(外部)
+
+50
+
+// 注意点：对象类型的键（key）要求是字符串类型，如果使⽤的是点的形式，默认会把添加的键转成字符串类
+型，如果是使⽤中括号添加的必须⼿动加引号
+
+51
+
+// [] 可以解析变量，如果不加引号会把⾥⾯的单词当成变量解析
+
+52
+
+// person.money = '⼀个⼩⽬标'
+
+53
+
+// person['money'] = '⼀个⼩⽬标'
+
+54
+55
+
+// 情况：没有确定好给对象的键名是什么？考虑后期可以修改
+
+56
+
+// let key = 'abc'
+
+57
+
+// person[key] = '测试数据'
+
+58
+59
+60
+
+// 修改对象的值
+
+61
+
+person.name = '张三'
+
+62
+63
+
+// 删除对象的值
+
+64
+
+delete person.age
+
+65
+66
+
+console.log(person)
+
+5、对象遍历
+1
+
+// 遍历对象 for in
+
+2
+
+for(let key in person){
+
+3
+
+// console.log(key)
+
+4
+
+// person['name']
+
+5
+
+console.log(person[key])
+
+6
+
+}
+
+6、组合数据表格渲染
+1
+
+<!DOCTYPE html>
+
+2
+
+<html lang="en">
+
+3
+
+<head>
+
+4
+
+<meta charset="UTF-8">
+
+5
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+6
+
+<title>Document</title>
+
+7
+
+<style>
+
+8
+
+table{
+
+9
+
+width: 500px;
+
+10
+
+height: 300px;
+
+11
+
+border: 1px solid orange;
+
+12
+
+border-collapse: collapse;
+
+13
+
+}
+
+14
+
+table tr td{
+
+15
+
+border: 1px solid orange;
+
+16
+
+text-align: center;
+
+17
+18
+
+}
+</style>
+
+19
+
+</head>
+
+20
+
+<body>
+
+21
+22
+
+<script>
+let student_info = [
+
+23
+
+{
+
+24
+
+id: '001',
+
+25
+
+name: '丁致宇',
+
+26
+
+age: 20,
+
+27
+
+gender: '男',
+
+28
+
+height: 176,
+
+29
+
+tel: 13600425678,
+
+30
+
+weight: 70
+
+31
+
+},
+
+32
+
+{
+
+33
+
+id: '002',
+
+34
+
+name: '陈乐',
+
+35
+
+age: 21,
+
+36
+
+gender: '男',
+
+37
+
+height: 178,
+
+38
+
+tel: 13100425678,
+
+39
+
+weight: 62
+
+40
+
+},
+
+41
+
+{
+
+42
+
+id: '003',
+
+43
+
+name: '韩超',
+
+44
+
+age: 22,
+
+45
+
+gender: '男',
+
+46
+
+height: 180,
+
+47
+
+tel: 13102425678,
+
+48
+
+weight: 63
+
+49
+50
+
+},
+]
+
+51
+
+console.log(student_info)
+
+52
+53
+
+let thead = ['编号', '姓名', '年龄', '性别', '身⾼', '电话', '体重']
+
+54
+55
+
+// 创建⼀个表格
+
+56
+
+let str = '<table>'
+
+57
+
+str += '<tr>'
+
+58
+
+for(let k=0; k<thead.length; k++){
+
+59
+
+str += '<td>'+thead[k]+'</td>'
+
+60
+
+}
+
+61
+
+str += '</tr>'
+
+62
+63
+
+// 外层循环控制的是⾏数
+
+64
+
+for(let i=0; i<student_info.length; i++){
+
+65
+
+str += '<tr>'
+
+66
+
+// 内层循环控制的是列数
+
+67
+
+for(let key in student_info[i]){
+
+68
+
+//
+
+student_info[0]['name']
+
+student_info[0]['age']
+
+student_info[0]['gender']...
+69
+
+//
+
+70
+
+student_info[1]['name']
+
+str += '<td>'+student_info[i][key]+'</td>'
+
+71
+
+}
+
+72
+
+str += '</tr>'
+
+73
+
+}
+
+74
+
+str += '</table>'
+
+75
+
+document.write(str)
+
+76
+
+</script>
+
+77
+
+</body>
+
+78
+
+</html>
+
+四、箭头函数
+1、箭头函数是对普通函数的简化形式
+2、示例代码
+1
+
+<!DOCTYPE html>
+
+2
+
+<html lang="en">
+
+3
+
+<head>
+
+4
+
+<meta charset="UTF-8">
+
+5
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+6
+
+<title>Document</title>
+
+7
+
+</head>
+
+8
+
+<body>
+
+9
+
+<script>
+
+10
+
+// function fn(){
+
+11
+
+//
+
+12
+
+// }
+
+13
+
+// fn()
+
+console.log('hello')
+
+14
+15
+
+// const fn = ()=> {
+
+16
+
+//
+
+console.log('hello')
+
+17
+
+// }
+
+18
+
+// fn()
+
+19
+20
+
+// function addSum(a, b){
+
+21
+
+//
+
+22
+
+// }
+
+23
+
+// console.log(addSum(10, 20))
+
+return a + b
+
+24
+25
+
+// 表示省略了函数返回值
+
+26
+
+// const addSum = (a, b)=> a + b
+
+27
+
+// console.log(addSum(10, 20))
+
+28
+29
+
+// const testFn = ()=>{
+
+30
+
+//
+
+31
+
+// }
+
+32
+
+// console.log(testFn())
+
+return {name: '张三', age: 18}
+
+33
+34
+
+// () 表示不把{}当成代码块来解析，当成普通的对象给外界返回
+
+35
+
+// const testFn = ()=> ({name: '张三', age: 18})
+
+36
+
+// console.log(testFn())
+
+37
+38
+
+let student_info = [
+
+39
+
+{
+
+40
+
+id: '001',
+
+41
+
+name: '丁致宇',
+
+42
+
+age: 20,
+
+43
+
+gender: '男',
+
+44
+
+height: 176,
+
+45
+
+tel: 13600425678,
+
+46
+
+weight: 70
+
+47
+
+},
+
+48
+
+{
+
+49
+
+id: '002',
+
+50
+
+name: '陈乐',
+
+51
+
+age: 21,
+
+52
+
+gender: '男',
+
+53
+
+height: 178,
+
+54
+
+tel: 13100425678,
+
+55
+
+weight: 62
+
+56
+
+},
+
+57
+
+{
+
+58
+
+id: '003',
+
+59
+
+name: '韩超',
+
+60
+
+age: 22,
+
+61
+
+gender: '男',
+
+62
+
+height: 180,
+
+63
+
+tel: 13102425678,
+
+64
+
+weight: 63
+
+65
+
+},
+
+66
+
+]
+
+67
+
+// student_info.forEach(function(item, index){
+
+68
+
+// })
+
+69
+70
+
+// student_info.forEach((item, index)=>{
+
+71
+
+// })
+
+72
+73
+
+// 注意点：箭头函数只有⼀个参数的时候，可以省略⼩括号
+
+74
+
+student_info.forEach(item=>{
+
+75
+
+console.log(item)
+
+76
+
+})
+
+77
+
+</script>
+
+78
+
+</body>
+
+79
+
+</html>
+
+五、模板字符串
+1、对字符串拼接的简化形式
+2、示例代码
+1
+
+<!DOCTYPE html>
+
+2
+
+<html lang="en">
+
+3
+
+<head>
+
+4
+
+<meta charset="UTF-8">
+
+5
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+6
+
+<title>Document</title>
+
+7
+
+</head>
+
+8
+
+<body>
+
+9
+
+<!-- <ul>
+
+10
+
+<li>
+
+11
+
+<img src="https://cdn.cnbj1.fds.api.mi-img.com/mimall/fe39602d3ffa85c84e0410d90b48851e.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+
+12
+
+<h3>REDMI Turbo 5 MAX</h3>
+
+13
+
+<p class="desc">天玑 9500s | 9000mAh 最⼤⼩⽶电池 | 1.5K 超级阳光屏</p>
+
+14
+
+<p class="price">2499元</p>
+
+15
+
+</li>
+
+16
+
+</ul> -->
+
+17
+
+<script>
+
+18
+
+// let name = '张三'
+
+19
+
+// let age = 18
+
+20
+
+// document.write('他的名字是：'+name+'今年他'+age+'岁了！')
+
+21
+22
+
+// ${变量名称}
+
+23
+
+// document.write(`他的名字是：${name}, 今年他${age}岁了！`)
+
+24
+25
+
+// 需要拼接⼀个列表结构出来
+
+26
+
+// let str = '<ul>'
+
+27
+
+//
+
+28
+
+//
+
+str += '<li>'
+str += '<img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-
+
+mall/fe39602d3ffa85c84e0410d90b48851e.png?thumb=1&w=400&h=400&f=webp&q=90">'
+29
+
+//
+
+str += '<h3>REDMI Turbo 5 MAX</h3>'
+
+30
+
+str += '<p class="desc">天玑 9500s | 9000mAh 最⼤⼩⽶电池 | 1.5K 超级
+
+//
+阳光屏</p>'
+
+31
+
+//
+
+str += '<p class="price">2499元</p>'
+
+32
+
+//
+
+33
+
+// str += '</ul>'
+
+str += '</li>'
+
+34
+35
+
+// document.write(str)
+
+36
+37
+38
+
+// let str = `
+
+39
+
+//
+
+40
+
+//
+
+41
+
+//
+
+<ul>
+<li>
+<img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-
+
+mall/fe39602d3ffa85c84e0410d90b48851e.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+42
+
+//
+
+<h3>REDMI Turbo 5 MAX</h3>
+
+43
+
+//
+
+<p class="desc">天玑 9500s | 9000mAh 最⼤⼩⽶电池 | 1.5K 超级阳光
+
+44
+
+//
+
+<p class="price">2499元</p>
+
+45
+
+//
+
+46
+
+//
+
+47
+
+// `
+
+48
+
+// document.write(str)
+
+屏</p>
+</li>
+</ul>
+
+49
+50
+
+// let str = '<ul>'
+
+51
+
+//
+
+52
+
+//
+
+str += `
+
+53
+
+//
+
+<li>
+
+54
+
+for(let i=0; i<5; i++){
+
+//
+
+<img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-
+
+mall/fe39602d3ffa85c84e0410d90b48851e.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+55
+56
+
+//
+
+<h3>REDMI Turbo 5 MAX</h3>
+
+//
+
+<p class="desc">天玑 9500s | 9000mAh 最⼤⼩⽶电池 | 1.5K 超级
+
+阳光屏</p>
+57
+
+//
+
+58
+
+//
+
+<p class="price">2499元</p>
+
+59
+
+//
+
+60
+
+//
+
+61
+
+// str += '</ul>'
+
+62
+
+// document.write(str)
+
+</li>
+`
+}
+
+63
+64
+
+// let shoppingList = [
+
+65
+
+//
+
+66
+
+//
+
+id: '001',
+
+//
+
+images: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-
+
+67
+
+{
+
+mall/fe39602d3ffa85c84e0410d90b48851e.png?thumb=1&w=400&h=400&f=webp&q=90',
+68
+
+//
+
+title: 'REDMI Turbo 5 MAX',
+
+69
+
+//
+
+desc: '天玑 9500s | 9000mAh 最⼤⼩⽶电池 | 1.5K 超级阳光屏',
+
+70
+
+//
+
+71
+
+//
+
+72
+
+// ]
+
+73
+
+</script>
+
+74
+
+</body>
+
+75
+
+</html>
+
+price: '2499元'
+}
+
+六、随机点名
+1、定时器
+setInterval() 随着时间的变化，⽽不断执⾏ setInterval() 函数⾥⾯的代码
+
+参数
+参数1：表示的是⼀个函数（执⾏具体代码的函数）
+参数2：表示时间，以毫秒来计算 1秒 == 1000毫秒
+示例代码
+1
+
+let start = 0
+
+2
+
+setInterval(()=>{
+
+3
+
+start += 1
+
+4
+
+console.log(start)
+
+5
+
+}, 1000)
+
+clearInterval() 清除定时器
+
+参数
+参数需要的是⼀个定时器返回的id
+示例代码
+1
+
+<!DOCTYPE html>
+
+2
+
+<html lang="en">
+
+3
+
+<head>
+
+4
+
+<meta charset="UTF-8">
+
+5
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+6
+
+<title>Document</title>
+
+7
+
+</head>
+
+8
+
+<body>
+
+9
+
+<button class="start">start</button>
+
+10
+
+<button class="end">end</button>
+
+11
+
+<script>
+
+12
+
+// let start = 0
+
+13
+
+// setInterval(()=>{
+
+14
+
+//
+
+start += 1
+
+15
+
+//
+
+console.log(start)
+
+16
+
+// }, 1000)
+
+17
+18
+
+function $(ele){
+
+19
+20
+
+return document.querySelector(ele)
+}
+
+21
+22
+
+// 获取元素
+
+23
+
+const start = $('.start')
+
+24
+
+const end = $('.end')
+
+25
+26
+
+// 定义全局变量
+
+27
+
+let i = 0
+
+28
+29
+
+// 定义变量来接收定时器返回的id
+
+30
+
+let timer = null
+
+31
+32
+
+// 绑定事件
+
+33
+
+start.onclick = ()=>{
+
+34
+
+timer = setInterval(()=>{
+
+35
+
+i += 1
+
+36
+
+console.log(i)
+
+37
+
+}, 1000)
+
+38
+
+}
+
+39
+
+end.onclick = ()=>{
+
+40
+
+clearInterval(timer)
+
+41
+
+}
+
+42
+
+</script>
+
+43
+
+</body>
+
+44
+
+</html>
+
+2、随机数
+Math.random() 返回是0-1之间的随机数，取1的概率极⼩的
+
+示例代码
+1
+
+// console.log(Math.random())
+
+2
+
+// console.log(Math.random() * 10)
+
+3
+4
+
+let studentName = ['陈乐', '丁致宇', '张三', '王五', '李四', '韩超']
+
+5
+6
+
+let random = Math.ceil(Math.random() * studentName.length)
+
+7
+8
+
+console.log(random)
+
+3、随机点名效果
+1
+
+<!DOCTYPE html>
+
+2
+
+<html lang="en">
+
+3
+
+<head>
+
+4
+
+<meta charset="UTF-8">
+
+5
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+6
+
+<title>Document</title>
+
+7
+
+</head>
+
+8
+
+<body>
+
+9
+
+<button class="start">开始</button>
+
+10
+
+<button class="end">停⽌</button>
+
+11
+
+<hr>
+
+12
+
+<h3></h3>
+
+13
+
+<script>
+
+14
+15
+
+function $(ele){
+return document.querySelector(ele)
+
+16
+
+}
+
+17
+18
+
+// 获取元素
+
+19
+
+const start = $('.start')
+
+20
+
+const end = $('.end')
+
+21
+
+const content = $('h3')
+
+22
+23
+
+let studentName = ['陈乐', '丁致宇', '张三', '王五', '李四', '韩超']
+
+24
+25
+
+// innerHTML 可以给标记赋值
+
+26
+
+// 随机点名的初始值
+
+27
+
+content.innerHTML = studentName[1]
+
+28
+29
+
+// 清除定时器
+
+30
+
+let timer = null
+
+31
+32
+
+// 绑定事件
+
+33
+
+start.onclick = ()=>{
+
+34
+
+// 先清除，再开启
+
+35
+
+clearInterval(timer)
+
+36
+37
+
+timer = setInterval(()=>{
+
+38
+
+// Math.floor() 向下取整
+
+39
+
+// Math.ceil() 向上取整
+
+40
+
+let index = Math.floor(Math.random() * studentName.length)
+
+41
+
+content.innerHTML = studentName[index]
+
+42
+
+}, 50)
+
+43
+
+}
+
+44
+45
+
+end.onclick = ()=>{
+
+46
+
+clearInterval(timer)
+
+47
+48
+
+}
+</script>
+
+49
+
+</body>
+
+50
+
+</html>
+
+

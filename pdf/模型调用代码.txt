@@ -1,0 +1,222 @@
+day13笔记
+一、AI概述
+1、什么是人工智能？--- AI
+定义：AI是计算机科学的一个分支，在模拟人类智能（学习、推理、感知、决策），使机器能执行负责的任务（语音
+识别、图像分类、自动驾驶）
+核心能力：机器学习、深度学习、自然语言处理（NLP）、计算机视觉等技术（OpenCV --- python库）
+应用场景：医疗诊断（专有模型，需要模型的训练 --- 幻觉问题 --- RAG --- 阿福）、金融风控、智能客服、自动驾驶
+（智驾）
+关键特点：AI是底层技术框架、其他的概念（LLM---大语言模型、AIGC --- 生图、生视频）
+
+2、LLM（大语言模型）
+定义：LLM是AI的子集，专供的是自然语言处理，通过海量的数据训练模型，能理解、生成人类的语言
+现在模型很多都是基于transforer架构的
+
+3、Prompt（提示词）
+定义：用户给AI的输入（指令），用于引导模型生成特定的内容
+提示词的好与坏决定了AI给你的回复的指令（提示词工程）
+
+4、MCP（模型上下文协议）
+定义：为AI与应用程序提供了一个统一的交互协议
+
+5、AGI（通用人工智能）
+通用人工智能也被称为强人工智能，是人工智能领域中的终极追求目标
+简单来说，它是指拥有和人一样的能思考、学习、并适应和能解决任何领域中的问题（和人是同等）
+
+二、什么是智能体开发
+1、所谓的智能体开发，指的是构建一个能自主思考、决策并执行任务的AI程序。这个程序并不是简单的回答你一个问
+题，而是能理解你的目标，自己规划步骤、调用外部的工具，最终完成一个复杂的任务
+2、智能体步骤（langchain1.2版本）
+思考（LLM）
+行动（调用外部的工具 --- tools）
+分析
+执行
+反馈
+3、智能体组成部分
+大脑（大语言模型 --- LLM）
+
+工具（Tools），理解为智能体的手和脚
+规划与执行
+
+三、通过API和大模型对话
+1、进入阿里百炼平台
+地址：https://bailian.console.aliyun.com/cn-beijing?spm=5176.29597918.J_SEsSjsNv72yRuRFS2VknO.2.5d007b
+08caYNn7&tab=model#/model-market
+2、找到模型广场
+
+3、找到API参考
+
+4、进入API Key创建页面
+
+5、复制自己的Key，这个Key自己保管好，如果别人看到了使用的就是你的Key，销毁资源也是你的
+6、在文档选项中可以看到代码调用方式
+
+四、调用API接口
+1、地址：https://www.tianapi.com/
+2、python发送请求
+requests库，和咱们前端里面ajax功能是一样的
+安装
+pip install requests
+
+使用
+import requests
+requests.get()
+requests.post()
+requests.put()
+...
+# 导入发送请求python库
+import requests
+# 发送请求
+resp = requests.get(
+url='https://www.baidu.com'
+)
+# 设置编码格式
+resp.encoding = 'utf-8'
+# 判断下http状态码 200表示成功
+if resp.status_code == 200:
+print(resp.text)
+
+3、调用新闻接口
+
+4、示例代码
+import requests
+resp = requests.get(
+url='https://apis.tianapi.com/social/index',
+params={
+'key': 'ae6a521ed66581acc9c169ff6e6e8388',
+'num': 5
+}
+)
+# json 数据格式，要求外层单引号，内层key和value必须是双引号
+if resp.status_code == 200:
+# print(resp.text)
+# print('-' * 30)
+# resp 响应结果上有一个json()的方法，可以直接把结果转成python字典
+# print(resp.json()['result']['newslist'])
+newslist = resp.json()['result']['newslist']
+for index, item in enumerate(newslist):
+print(f'{index+1}, {item["title"]}')
+
+5、操作表格进行数据持久化
+安装
+pip install openpyxl
+
+openpyxl 专门用来操作Excel表格的
+示例代码
+import requests
+import openpyxl
+# 创建工作薄
+wb = openpyxl.Workbook()
+# 获取默认的工作表 active --- sheet
+# sheet = wb.active
+
+# 创建新的工作表
+sheet = wb.create_sheet('新闻数据')
+# 添加表的标题
+sheet.title = '新闻数据'
+# 添加表头
+sheet.append(('编号', '标题', '来源', '链接'))
+resp = requests.get(
+url='https://apis.tianapi.com/social/index',
+params={
+'key': 'ae6a521ed66581acc9c169ff6e6e8388',
+'num': 5
+}
+)
+if resp.status_code == 200:
+newslist = resp.json()['result']['newslist']
+for idx, item in enumerate(newslist):
+# 给表格添加内容
+row = idx+1, item['title'], item['source'], item['url']
+# 把这行数据添加进工作表中
+sheet.append(row)
+
+# 创建一个路径
+# \ 表示转义字符，在window操作系统中路径使用的是反斜杠，因此在操作路径的时候要特别注意
+file_path = r'C:\Users\dw\Desktop\data\news.xlsx'
+# 保存到工作薄
+wb.save(file_path)
+print(f'文件已经保存在: {file_path}')
+
+五、通过API接入大模型
+1、创建API Key，自己在网站创建拿到
+2、示例代码
+import requests
+import json
+resp = requests.post(
+url='https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions', # 阿里百炼大模型
+的地址
+# headers 请求头信息
+headers={
+'content-type': 'application/json', # 发送请求的数据格式是json
+'authorization': 'Bearer sk-7f401d1c30522f' # 通过这种形式把API Key传递给大模型
+authorization 身份验证的
+},
+
+Bearer 表示持有者，对身份的验证
+
+# data给大模型的参数，json.dumps() 把字典转成json格式传递（json是通用的数据格式）
+# messages 聊天列表，在这个列表中规定模型的角色
+# model 模型名称
+data=json.dumps(
+{
+'model': 'qwen3-max',
+'messages': [
+{'role': 'system', 'content': '你是一个脾气暴躁的助手，喜欢讲阴阳怪气的话，尖酸刻
+薄。'},
+{'role': 'user', 'content': '请使用300-500字左右介绍下清华大学'}
+]
+}
+)
+)
+if resp.status_code == 200:
+print(resp.json()['choices'][0]['message']['content'])
+
+六、OpenAI规范
+1、如果通过python的requests模块调用大模型，过程是非常繁琐的，因此OpenAI出了一套规范，可以让大家便捷的
+调用模型接口
+2、安装
+pip install openai
+
+3、示例代码
+from openai import OpenAI
+# 初始化客户端（建立连接）
+client = OpenAI(
+base_url='https://dashscope.aliyuncs.com/compatible-mode/v1',
+api_key='sk-7f4016c1b34a43958d2a289d1c30522f',
+)
+# 发送请求 --- 补全资源
+resp = client.chat.completions.create(
+model='qwen3-max',
+messages=[
+{'role': 'user', 'content': '成都新都有什么好玩的？'}
+]
+)
+# 拿到返回结果
+print(resp.choices[0].message.content)
+
+七、流式输出
+1、流式输出就是打字的效果
+2、示例代码
+from openai import OpenAI
+# 初始化客户端（建立连接）
+client = OpenAI(
+base_url='https://dashscope.aliyuncs.com/compatible-mode/v1',
+api_key='sk-7f4016c1b34a43958d2a289d1c30522f',
+)
+# 发送请求 --- 补全资源
+# stream=True, # 是否开启流式输出
+resp = client.chat.completions.create(
+model='qwen3-max',
+stream=True,
+messages=[
+{'role': 'user', 'content': '成都新都有什么好玩的？'}
+]
+)
+print(resp)
+print('-' * 30)
+# 拿到返回结果
+for chunk in resp:
+print(chunk.choices[0].delta.content, end='')
+
+
