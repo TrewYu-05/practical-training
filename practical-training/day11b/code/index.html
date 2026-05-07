@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车模块化(ES6 Module)</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; }
+        #console-output {
+            background-color: #222;
+            color: #0f0;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>购物车操作控制台 (请查看页面输出)</h2>
+    <div id="console-output"></div>
+
+    <!-- 必须加 type="module" -->
+    <script type="module">
+        // 导入模块化函数与变量
+        import checkout, { cart, addToCart, getCartTotal } from './cartModule.js';
+
+        const output = document.getElementById('console-output');
+        function log(message) {
+            output.innerHTML += message + '\n';
+        }
+
+        // 模拟业务逻辑主入口
+        log("--- 开始购物车模块测试 ---");
+
+        addToCart({ id: 1, name: "键盘", price: 300 });
+        log("添加商品: 键盘 (300元)");
+
+        addToCart({ id: 2, name: "鼠标", price: 150 });
+        log("添加商品: 鼠标 (150元)");
+
+        log(`当前购物车商品数量: ${cart.length}`);
+
+        const total = checkout();
+        log(`结账操作：总计金额为 ${total} 元。`);
+
+    </script>
+</body>
+</html>
