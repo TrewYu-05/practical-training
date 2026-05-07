@@ -261,11 +261,11 @@ pip install langchain langchain-community langchain-openai langchain-deepseek da
 
 2、配置 .env文件
 # OpenAI
-OPENAI_API_KEY='sk-7f4016c1b34a43958d2a289d1c22f'
+OPENAI_API_KEY='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 # deepseek
-DEEPSEEK_API_KEY='sk-57e80bf11bb54ac83d9973f1f607f'
+DEEPSEEK_API_KEY='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 # qwen
-DASHSCOPE_API_KEY='sk-7f4016c1b3958d2a289d1c30522f'
+DASHSCOPE_API_KEY='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 3、langchain环境安装验证
 import langchain

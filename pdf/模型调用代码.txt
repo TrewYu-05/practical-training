@@ -83,7 +83,7 @@ import requests
 resp = requests.get(
 url='https://apis.tianapi.com/social/index',
 params={
-'key': 'ae6a521ed66581acc9c169ff6e6e8388',
+'key': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 'num': 5
 }
 )
@@ -119,7 +119,7 @@ sheet.append(('编号', '标题', '来源', '链接'))
 resp = requests.get(
 url='https://apis.tianapi.com/social/index',
 params={
-'key': 'ae6a521ed66581acc9c169ff6e6e8388',
+'key': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 'num': 5
 }
 )
@@ -183,7 +183,7 @@ from openai import OpenAI
 # 初始化客户端（建立连接）
 client = OpenAI(
 base_url='https://dashscope.aliyuncs.com/compatible-mode/v1',
-api_key='sk-7f4016c1b34a43958d2a289d1c30522f',
+api_key='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 )
 # 发送请求 --- 补全资源
 resp = client.chat.completions.create(
@@ -202,7 +202,7 @@ from openai import OpenAI
 # 初始化客户端（建立连接）
 client = OpenAI(
 base_url='https://dashscope.aliyuncs.com/compatible-mode/v1',
-api_key='sk-7f4016c1b34a43958d2a289d1c30522f',
+api_key='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 )
 # 发送请求 --- 补全资源
 # stream=True, # 是否开启流式输出
