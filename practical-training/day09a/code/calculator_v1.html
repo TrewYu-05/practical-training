@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>简易前端计算器v1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .calc-container {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 5px 15px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calc-container">
+        <h3>加法计算器</h3>
+        <label for="num1">数字 1:</label>
+        <input type="number" id="num1"><br>
+
+        <label for="num2">数字 2:</label>
+        <input type="number" id="num2"><br>
+
+        <button onclick="calculate()">计算</button>
+        <button onclick="clearInputs()">清空</button>
+
+        <div class="result" id="resultDisplay">结果: </div>
+    </div>
+
+    <script>
+        function calculate() {
+            // 读取Input元素的 value 属性
+            let val1 = document.getElementById('num1').value;
+            let val2 = document.getElementById('num2').value;
+
+            // 转换为数值，并处理空输入情况
+            let num1 = parseFloat(val1) || 0;
+            let num2 = parseFloat(val2) || 0;
+
+            let sum = num1 + num2;
+            document.getElementById('resultDisplay').innerText = "结果: " + sum;
+        }
+
+        function clearInputs() {
+            document.getElementById('num1').value = "";
+            document.getElementById('num2').value = "";
+            document.getElementById('resultDisplay').innerText = "结果: ";
+        }
+    </script>
+</body>
+</html>

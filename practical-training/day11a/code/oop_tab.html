@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象版选项卡(Tab)切换</title>
+    <style>
+        .tab-container {
+            width: 400px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+        }
+        .tab-buttons {
+            display: flex;
+            background-color: #f1f1f1;
+        }
+        .tab-buttons button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            outline: none;
+            font-size: 16px;
+        }
+        .tab-buttons button.active {
+            background-color: #fff;
+            border-top: 2px solid #ff5000;
+            font-weight: bold;
+        }
+        .tab-contents {
+            padding: 20px;
+            background-color: #fff;
+            min-height: 150px;
+        }
+        .tab-contents div {
+            display: none;
+        }
+        .tab-contents div.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tab-container" id="myTab">
+        <div class="tab-buttons">
+            <button class="active">电影</button>
+            <button>电视</button>
+            <button>小说</button>
+        </div>
+        <div class="tab-contents">
+            <div class="active">这里是【电影】的推荐内容：流浪地球、星际穿越。</div>
+            <div>这里是【电视】的推荐内容：狂飙、三体。</div>
+            <div>这里是【小说】的推荐内容：百年孤独、活着。</div>
+        </div>
+    </div>
+
+    <script>
+        // 基于 ES6 Class 特性封装 Tab 类
+        class Tab {
+            constructor(id) {
+                this.main = document.querySelector(id);
+                this.lis = this.main.querySelectorAll('.tab-buttons button');
+                this.sections = this.main.querySelectorAll('.tab-contents div');
+                this.init();
+            }
+
+            init() {
+                // 初始化按钮/内容 DOM 集合，绑定事件
+                for (let i = 0; i < this.lis.length; i++) {
+                    this.lis[i].onclick = () => {
+                        this.toggleTab(i);
+                    };
+                }
+            }
+
+            toggleTab(index) {
+                // 排他性思维：先清除所有，再激活当前
+                this.clearClass();
+                this.lis[index].classList.add('active');
+                this.sections[index].classList.add('active');
+            }
+
+            clearClass() {
+                for (let i = 0; i < this.lis.length; i++) {
+                    this.lis[i].classList.remove('active');
+                    this.sections[i].classList.remove('active');
+                }
+            }
+        }
+
+        // 实例化
+        new Tab('#myTab');
+    </script>
+</body>
+</html>

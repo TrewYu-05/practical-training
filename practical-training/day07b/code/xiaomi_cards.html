@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>小米商品列表动态渲染</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+        .grid-container {
+            width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .product-card {
+            background-color: #fff;
+            width: 280px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            /* 关键点：设置 transition 过渡动画 */
+            transition: all 0.3s ease;
+            margin-top: 0;
+        }
+        /* 关键点：鼠标悬停交互效果 */
+        .product-card:hover {
+            margin-top: -5px; /* 卡片上浮 */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* 盒阴影 */
+        }
+        .product-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .product-title {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .product-desc {
+            font-size: 12px;
+            color: #b0b0b0;
+            margin-bottom: 15px;
+            height: 18px;
+            overflow: hidden;
+        }
+        .product-price {
+            font-size: 14px;
+            color: #ff6700;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-container">
+        <!-- 卡片 1 -->
+        <div class="product-card">
+            <img class="product-img" src="https://placehold.co/200x200?text=Xiaomi+14" alt="Xiaomi 14">
+            <h3 class="product-title">Xiaomi 14</h3>
+            <p class="product-desc">徕卡光学镜头，光影猎人900</p>
+            <p class="product-price">3999元起</p>
+        </div>
+        <!-- 卡片 2 -->
+        <div class="product-card">
+            <img class="product-img" src="https://placehold.co/200x200?text=Redmi+K70" alt="Redmi K70">
+            <h3 class="product-title">Redmi K70</h3>
+            <p class="product-desc">第二代骁龙8，2K直屏</p>
+            <p class="product-price">2499元起</p>
+        </div>
+        <!-- 卡片 3 -->
+        <div class="product-card">
+            <img class="product-img" src="https://placehold.co/200x200?text=Xiaomi+Watch+S3" alt="Watch S3">
+            <h3 class="product-title">Xiaomi Watch S3</h3>
+            <p class="product-desc">百变表圈，HyperOS</p>
+            <p class="product-price">799元起</p>
+        </div>
+        <!-- 卡片 4 -->
+        <div class="product-card">
+            <img class="product-img" src="https://placehold.co/200x200?text=Xiaomi+Pad+6" alt="Pad 6">
+            <h3 class="product-title">Xiaomi Pad 6 Max 14</h3>
+            <p class="product-desc">14英寸大屏，轻办公利器</p>
+            <p class="product-price">3599元起</p>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>丁致宇真爱有缘网注册表单</title>
+</head>
+<body>
+    <h2>丁致宇真爱有缘网 - 用户注册</h2>
+    <form action="#" method="POST">
+        <label for="username">用户名:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">密码:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="phone">手机号:</label>
+        <input type="tel" id="phone" name="phone" required><br><br>
+
+        <label>性别:</label>
+        <input type="radio" id="gender_male" name="gender" value="male">
+        <label for="gender_male">男</label>
+        <input type="radio" id="gender_female" name="gender" value="female">
+        <label for="gender_female">女</label><br><br>
+
+        <label>婚姻状况:</label>
+        <input type="radio" id="marital_single" name="marital" value="single">
+        <label for="marital_single">未婚</label>
+        <input type="radio" id="marital_married" name="marital" value="married">
+        <label for="marital_married">已婚</label>
+        <input type="radio" id="marital_divorced" name="marital" value="divorced">
+        <label for="marital_divorced">离异</label><br><br>
+
+        <label>爱好:</label>
+        <input type="checkbox" id="hobby_reading" name="hobbies" value="reading">
+        <label for="hobby_reading">阅读</label>
+        <input type="checkbox" id="hobby_sports" name="hobbies" value="sports">
+        <label for="hobby_sports">运动</label>
+        <input type="checkbox" id="hobby_music" name="hobbies" value="music">
+        <label for="hobby_music">音乐</label><br><br>
+
+        <label for="intro">自我介绍:</label><br>
+        <textarea id="intro" name="intro" rows="5" cols="40"></textarea><br><br>
+
+        <button type="submit" disabled>注册 (请先同意协议)</button>
+    </form>
+</body>
+</html>
