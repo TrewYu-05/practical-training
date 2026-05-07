@@ -1,0 +1,183 @@
+day14
+一、Few Shot Prompt
+1、大模型在回答咱们问题的时候，如果没有具体的示例，输出具有随机性
+2、所谓的小样本提示就是给大模型 “打个样”，依葫芦画瓢，给一个参照
+3、示例代码
+from openai import OpenAI
+client = OpenAI(
+base_url='https://dashscope.aliyuncs.com/compatible-mode/v1',
+api_key='sk-7f4016c1b34a43958d2a289d1c30522f',
+)
+"""
+Q: 换电池报价8万2！二手车商都不敢收，所谓终身质保条款藏着无数套路，新能源韭菜真不是白叫的。
+A: 负面
+Q: 驾乘体验非常舒服，增程式没有续航焦虑，月均油电费才300块，国产新能源神车当之无愧。
+A: 正面
+Q: 驾驶质感不错，但车机逻辑混乱需要适应，价格是否合理建议先试驾后再评判，仁者见仁智者见智。
+A: 中性
+Q: 车机系统半年死机8次，OTA升级后360影像卡顿，国产新势力就会堆配置不抓品控，下次换车还是回归传统品牌。
+"""
+user_input = input('请输入你的评价:')
+
+messages = [
+{'role': 'system', 'content': '你是一个文档分类器。请根据我提供的示例，严格判断用户输入的情感倾向。
+只输出一个词，正面、负面或中性。不要输出任何解释' },
+{'role': 'user', 'content': '换电池报价8万2！二手车商都不敢收，所谓终身质保条款藏着无数套路，新能源
+韭菜真不是白叫的。'},
+{'role': 'assistant', 'content': '负面'},
+{'role': 'user', 'content': '驾乘体验非常舒服，增程式没有续航焦虑，月均油电费才300块，国产新能源神
+车当之无愧。'},
+{'role': 'assistant', 'content': '正面'},
+{'role': 'user', 'content': '驾驶质感不错，但车机逻辑混乱需要适应，价格是否合理建议先试驾后再评判，
+仁者见仁智者见智。'},
+{'role': 'assistant', 'content': '中性'},
+{'role': 'user', 'content': user_input},
+]
+# system 系统提示词，规定AI行为规范，给定它一个角色
+# user 用户输入提示词
+# assistant AI回答
+resp = client.chat.completions.create(
+model='qwen3-max',
+stream=True,
+messages=messages
+
+)
+for chunk in resp:
+print(chunk.choices[0].delta.content, end='')
+
+二、隐藏Key
+1、在项目的根目录下新建一个.env的文件，名称必须是这个
+2、安装
+pip install python-dotenv
+
+3、 .env 文件
+OPENAI_API_KEY='sk-7f4016c1b34a43958d2a289d12f'
+
+4、示例代码
+from openai import OpenAI
+from dotenv import load_dotenv
+# 会默认查找根目录下 .env文件里面的内容
+load_dotenv()
+client = OpenAI(base_url='https://dashscope.aliyuncs.com/compatible-mode/v1')
+user_input = input('请输入你的问题:')
+messages = [
+{'role': 'user', 'content': user_input},
+]
+resp = client.chat.completions.create(
+model='qwen3-max',
+stream=True,
+messages=messages
+)
+for chunk in resp:
+print(chunk.choices[0].delta.content, end='')
+
+三、给模型添加记忆
+1、大模型本身是没有记忆，记不住你前面问的问题是什么
+2、验证大模型是否存在记忆？
+大模型本身并不能调用外部工具
+只有智能体才能调用外部的工具
+例如：天气查询
+
+from openai import OpenAI
+from dotenv import load_dotenv
+# 会默认查找根目录下 .env文件里面的内容
+load_dotenv()
+client = OpenAI(base_url='https://dashscope.aliyuncs.com/compatible-mode/v1')
+resp = client.chat.completions.create(
+model='qwen3-max',
+messages=[
+{'role': 'user', 'content': '我的叫丁致宇，是一名python工程师'},
+]
+)
+print(resp.choices[0].message.content)
+print('-' * 30)
+resp = client.chat.completions.create(
+model='qwen3-max',
+messages= [
+{'role': 'user', 'content': '我叫什么名字？'},
+]
+)
+print(resp.choices[0].message.content)
+
+3、给大模型添加记忆（使用最简单形式）
+from openai import OpenAI
+from dotenv import load_dotenv
+# 会默认查找根目录下 .env文件里面的内容
+load_dotenv()
+client = OpenAI(base_url='https://dashscope.aliyuncs.com/compatible-mode/v1')
+answer = client.chat.completions.create(
+model='qwen3-max',
+messages=[
+{'role': 'user', 'content': '我的叫丁致宇，是一名python工程师'},
+]
+)
+print(answer.choices[0].message.content)
+print('-' * 30)
+
+resp = client.chat.completions.create(
+model='qwen3-max',
+messages= [
+{'role': 'user', 'content': f'{answer}，我叫什么名字？'},
+]
+)
+print(resp.choices[0].message.content)
+
+四、streamlit介绍和安装
+1、streamlit是一个用于创建数据应用的开源的python库，它是专为数据科学家和机器学习工程师而设计的。简化了
+数据可视化和交互式应用的过程。
+2、之前如果需要搭建一个应用的界面，必须先使用html和css或者vue.js来构建界面，再设计接口，前端调用接口，
+最终界面才能呈现数据
+3、streamlit直接简化了构建界面的过程，只要使用了这个里面提供的相关的组件就可以快速出效果
+4、安装
+pip install streamlit
+
+5、查看streamlit版本
+streamlit --version
+
+6、运行
+streamlit run 文件名.py
+
+7、streamlit官方示例
+streamlit hello
+
+五、streamlit初体验
+import streamlit as st
+# 标题
+st.title('小红书爆款文案助手')
+st.header('这是一个较小的标题')
+st.subheader('这是一个相对较小的标题')
+# 添加文本输入
+
+name = st.text_input('请输入你的名字')
+# 添加按钮
+button = st.button('确认', type='primary')
+if button:
+# 在界面上输出文本，支持markdown格式
+st.write(f'## 我的名字是：{name}')
+# 显示代码
+st.code(
+"""
+from openai import OpenAI
+from dotenv import load_dotenv
+# 会默认查找根目录下 .env文件里面的内容
+load_dotenv()
+client = OpenAI(base_url='https://dashscope.aliyuncs.com/compatible-mode/v1')
+answer = client.chat.completions.create(
+model='qwen3-max',
+messages=[
+{'role': 'user', 'content': '我的叫丁致宇，是一名python工程师'},
+]
+)
+print(answer.choices[0].message.content)
+print('-' * 30)
+resp = client.chat.completions.create(
+model='qwen3-max',
+messages= [
+{'role': 'user', 'content': f'{answer}，我叫什么名字？'},
+]
+)
+print(resp.choices[0].message.content)
+"""
+)
+
+

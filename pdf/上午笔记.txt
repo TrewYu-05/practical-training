@@ -1,0 +1,70 @@
+day15笔记
+一、分列布局
+import streamlit as st
+# 把界面某个显示区域分为三列
+column1, column2, column3 = st.columns(3)
+# with 表示的是把列里面的内容放在界面什么位置
+with column1:
+st.write('这是第一列')
+with column2:
+st.write('这是第二列')
+with column3:
+st.write('这是第三列')
+st.divider()
+column1, column2, column3 = st.columns(3)
+with column1:
+st.text_input('请输入你的用户名')
+with column2:
+st.text_area('请输入自我介绍')
+with column3:
+st.text_input('请输入密码', type='password')
+
+二、选项卡
+tab1, tab2, tab3 = st.tabs(['姓名', '联系方式', '你的兴趣爱好'])
+with tab1:
+name = st.text_input(label='姓名', placeholder='请输入你的姓名:')
+if name:
+st.write(f'欢迎：{name}')
+with tab2:
+contact = st.selectbox('你希望我们通过方式来练习你', ['电话', '邮件', '微信'])
+st.write(f'好的，我们会通过{contact}方式来联系你')
+with tab3:
+likes = st.multiselect('你的兴趣是什么？', ['篮球', 'rap', '唱跳'])
+for it in likes:
+st.write(it)
+
+三、数据持久化
+1、问题：定义了一个数值类型的变量，初始值为0，当点击按钮后让其变量值每次+1，发送页面中实际上没有变化的
+（只改变了一次）
+
+import streamlit as st
+a = 0
+click_btn = st.button('加1')
+if click_btn:
+a += 1
+st.write(a)
+print(a)
+
+2、原因：当修改代码后，streamlit每次都会自动更新，重新执行python文件，相当于是把代码从头到尾都重新运行
+一遍，所以直接修改数据是不会变化的
+3、解决方案：数据持久化
+st.session_state 可以实现数据持久化
+
+# {} 默认是一个空字典 --- st.session_state = {}
+# print(st.session_state)
+# 先查看a这个属性是否在st.session_state中存在
+if 'a'not in st.session_state:
+# 不存在
+st.session_state['a'] = 0
+click_btn = st.button('加1')
+if click_btn:
+st.session_state['a'] += 1
+st.write(st.session_state['a'])
+
+四、创建多页面
+1、在根目录下，创建一个pages文件夹，名称必须是这个，这个文件夹里面放的是子页面
+2、新版的streamlit这里，如果pages下面有文件，会默认进行识别操作
+3、如果需要添加跳转链接
+st.page_link("pages/about.py", label="关于", icon="🏠")
+
+

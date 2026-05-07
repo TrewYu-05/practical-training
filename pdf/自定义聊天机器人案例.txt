@@ -1,0 +1,82 @@
+day16笔记
+一、自定义聊天机器人
+1、common.py文件
+import json
+def get_llm_response(client, *, system_prompt='', few_shot_prompt='', user_prompt='',
+model='qwen3-max', stream=False):
+# 定义聊天列表
+messages = []
+if system_prompt:
+messages.append({'role': 'system', 'content': system_prompt})
+if few_shot_prompt:
+messages += json.loads(few_shot_prompt)
+if user_prompt:
+messages.append({'role': 'user', 'content': user_prompt})
+# 补齐资源
+resp = client.chat.completions.create(
+model=model,
+messages=messages,
+stream=stream
+)
+# 判断是否开启了流模型
+if not stream:
+return resp.choices[0].message.content
+return resp
+
+2、示例代码
+from openai import OpenAI
+from common import get_llm_response
+import streamlit as st
+def get_answer(question: str):
+client = OpenAI(base_url=base_url, api_key=api_key)
+stream = get_llm_response(client, model=model_name, user_prompt=question, stream=True)
+for chunk in stream:
+yield chunk.choices[0].delta.content or ''
+# 侧边栏区域
+with st.sidebar:
+api_vendor = st.radio(label='请选择模型服务器商', options=['ChatTongyi', 'DeepSeek'])
+if api_vendor == 'ChatTongyi':
+base_url = 'https://dashscope.aliyuncs.com/compatible-mode/v1'
+model_options = ['qwen-plus', 'qwen-max', 'qwen-turbo', 'qwen3-max']
+elif api_vendor == 'DeepSeek':
+base_url = 'https://api.deepseek.com'
+
+model_options = ['deepseek-chat', 'deepseek-reasoner'] # deepseek-reasoner R1模型
+# 模型名称
+model_name = st.selectbox(label='请选择你要使用的模型', options=model_options)
+# 输入key，推荐使用密码框，因为可以隐藏key
+api_key = st.text_input(label='请输入你的key:', type='password')
+
+# 希望把聊天数据进行保存，如果只是使用一个普通变量来做存储的话，那么当代码修改了，数据会被重新初始化
+# 可以使用状态数据
+if 'messages' not in st.session_state:
+st.session_state['messages'] = [('ai', '你好，我是你的个人小助理，我叫小美')]
+
+st.write('## 我的个人聊天机器人')
+st.divider()
+# 如果没有提供api_key的话，那么其他区域就隐藏，给用户一个提示
+if not api_key:
+st.error('请提供你的大模型的api_key')
+st.stop()
+
+# 遍历聊天列表
+for role, content in st.session_state['messages']:
+st.chat_message(role).write(content)
+# 输入问题的输入框
+user_input = st.chat_input(placeholder='请输入')
+if user_input:
+# 历史记录，历史记录的数据结构二元组（角色，内容）
+_, history = st.session_state['messages'][-1]
+# 用户问题
+st.chat_message('human').write(user_input)
+# 把用户的提问添加进历史记录
+st.session_state['messages'].append(('human', user_input))
+# 输入问题后，给AI一个思考的过程
+with st.spinner('思考中...'):
+# AI回答
+# history 把最后一个的记录，每次问新问题时携带过去，这样模型就可以记住之前的内容
+answer = get_answer(f'{history}, {user_input}')
+result = st.chat_message('ai').write_stream(answer)
+st.session_state['messages'].append(('ai', result))
+
+
