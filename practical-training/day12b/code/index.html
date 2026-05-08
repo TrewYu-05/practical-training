@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+<h1>使用代码方式请求后端服务器数据</h1>
+<hr>
+<button id="req-btn">request</button>
+<div id="result"></div>
+<script>
+const btn = document.querySelector('#req-btn')
+const resultDiv = document.querySelector('#result')
+btn.onclick = ()=>{
+    const xhr = new XMLHttpRequest()
+    xhr.open('get', 'http://127.0.0.1:8080/home?a=10&b=20')
+    xhr.onload = ()=>{
+        console.log(xhr.responseText)
+        resultDiv.innerText = xhr.responseText
+    }
+    xhr.send()
+}
+</script>
+</body>
+</html>
