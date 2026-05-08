@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>网页随机点名系统</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; padding-top: 100px; }
+        #name-display {
+            font-size: 48px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 30px;
+            height: 60px;
+        }
+        button {
+            padding: 10px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="name-display">准备点名</div>
+    <button id="startBtn" onclick="startRandom()">开始</button>
+    <button id="stopBtn" onclick="stopRandom()" disabled>停止</button>
+
+    <script>
+        const names = ["张三", "李四", "王五", "赵六", "孙七", "周八", "吴九", "郑十"];
+        let timer = null;
+        const display = document.getElementById("name-display");
+        const startBtn = document.getElementById("startBtn");
+        const stopBtn = document.getElementById("stopBtn");
+
+        function startRandom() {
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+            // 开启循环定时任务
+            timer = setInterval(() => {
+                // 从人名数组中快速随机抽取名字
+                const randomIndex = Math.floor(Math.random() * names.length);
+                display.innerText = names[randomIndex];
+            }, 50); // 50毫秒刷新一次
+        }
+
+        function stopRandom() {
+            // 定格结果
+            clearInterval(timer);
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        }
+    </script>
+</body>
+</html>

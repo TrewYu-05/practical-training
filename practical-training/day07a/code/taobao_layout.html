@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝链接区域网页静态布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 1200px;
+            margin: 20px auto; /* 版心居中 */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px; /* 圆角 */
+        }
+        .banner {
+            width: 100%;
+            height: 150px;
+            background-color: #ff5000;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            background-image: url('https://placehold.co/1160x150?text=Taobao+Banner');
+            background-size: cover;
+            background-position: center;
+        }
+        .content {
+            overflow: hidden; /* 清除浮动 */
+        }
+        .left-col {
+            float: left;
+            width: 250px;
+            background-color: #fafafa;
+            padding: 15px;
+            border-radius: 10px;
+            min-height: 300px;
+        }
+        .mid-col {
+            float: left;
+            width: 630px;
+            margin: 0 20px;
+            padding: 15px;
+            background-color: #fafafa;
+            border-radius: 10px;
+            min-height: 300px;
+        }
+        .right-col {
+            float: right;
+            width: 240px;
+            background-color: #fafafa;
+            padding: 15px;
+            border-radius: 10px;
+            min-height: 300px;
+        }
+        .category-list {
+            list-style: none;
+        }
+        .category-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+        .category-list li a {
+            text-decoration: none;
+            color: #333;
+        }
+        .category-list li a:hover {
+            color: #ff5000;
+        }
+        .mid-img {
+            width: 100%;
+            height: 270px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        h3 {
+            margin-bottom: 15px;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 广告横幅 -->
+        <div class="banner"></div>
+
+        <!-- 浮动分区 -->
+        <div class="content">
+            <!-- 左侧链接模块 -->
+            <div class="left-col">
+                <h3>分类导航</h3>
+                <ul class="category-list">
+                    <li><a href="#">女装 / 男装 / 内衣</a></li>
+                    <li><a href="#">鞋靴 / 箱包 / 配件</a></li>
+                    <li><a href="#">童装玩具 / 孕产 / 用品</a></li>
+                    <li><a href="#">家电 / 数码 / 手机</a></li>
+                    <li><a href="#">美妆 / 洗护 / 保健品</a></li>
+                </ul>
+            </div>
+
+            <!-- 中间内容模块 -->
+            <div class="mid-col">
+                <img class="mid-img" src="https://placehold.co/600x270?text=Main+Content" alt="Main Content">
+            </div>
+
+            <!-- 右侧用户模块 -->
+            <div class="right-col">
+                <h3>用户中心</h3>
+                <img src="https://placehold.co/210x100?text=User+Avatar" alt="User" style="width:100%; border-radius: 10px; margin-bottom: 15px;">
+                <div style="text-align: center; margin-top: 20px;">
+                    <button style="padding: 10px 20px; background-color: #ff5000; color: white; border: none; border-radius: 20px; cursor: pointer;">登录 / 注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

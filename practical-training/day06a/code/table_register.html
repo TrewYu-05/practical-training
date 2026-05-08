@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎注册页面排版设计</title>
+    <style>
+        table {
+            width: 600px;
+            margin: 50px auto;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: right;
+            width: 150px;
+        }
+        .header-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="#" method="POST">
+        <table>
+            <!-- Header spanning two columns -->
+            <tr>
+                <td colspan="2" class="header-title">欢迎注册新账户</td>
+            </tr>
+
+            <tr>
+                <th>用户名:</th>
+                <td><input type="text" name="username" required></td>
+            </tr>
+
+            <tr>
+                <th>密码:</th>
+                <td><input type="password" name="password" required></td>
+            </tr>
+
+            <tr>
+                <th>确认密码:</th>
+                <td><input type="password" name="confirm_password" required></td>
+            </tr>
+
+            <tr>
+                <!-- Utilizing rowspan as specifically requested -->
+                <th rowspan="2">个人简介:</th>
+                <td>
+                    <textarea name="bio" rows="4" cols="40" placeholder="请简要介绍自己..."></textarea>
+                </td>
+            </tr>
+            <tr>
+                <!-- Second row corresponding to the rowspan=2 -->
+                <td style="font-size: 12px; color: #888;">* 简介不得超过500字</td>
+            </tr>
+
+            <tr>
+                <th>城市:</th>
+                <td>
+                    <select name="city">
+                        <option value="beijing">北京</option>
+                        <option value="shanghai">上海</option>
+                        <option value="guangzhou">广州</option>
+                    </select>
+                </td>
+            </tr>
+
+            <!-- Footer spanning two columns -->
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <button type="submit" class="submit-btn">立即注册</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

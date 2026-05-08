@@ -6,7 +6,7 @@ day14
 from openai import OpenAI
 client = OpenAI(
 base_url='https://dashscope.aliyuncs.com/compatible-mode/v1',
-api_key='sk-7f4016c1b34a43958d2a289d1c30522f',
+api_key='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 )
 """
 Q: 换电池报价8万2！二手车商都不敢收，所谓终身质保条款藏着无数套路，新能源韭菜真不是白叫的。
@@ -51,7 +51,7 @@ print(chunk.choices[0].delta.content, end='')
 pip install python-dotenv
 
 3、 .env 文件
-OPENAI_API_KEY='sk-7f4016c1b34a43958d2a289d12f'
+OPENAI_API_KEY='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 4、示例代码
 from openai import OpenAI

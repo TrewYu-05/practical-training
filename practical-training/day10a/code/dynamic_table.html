@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>基于JS循环的动态表格数据渲染</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { width: 60%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <h2>学生成绩表 (动态渲染)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>成绩</th>
+            </tr>
+        </thead>
+        <tbody id="student-tbody">
+            <!-- 数据将通过JS动态插入 -->
+        </tbody>
+    </table>
+
+    <script>
+        // 后台数组对象格式的学生数据
+        const students = [
+            { id: "1001", name: "张三", age: 18, score: 95 },
+            { id: "1002", name: "李四", age: 19, score: 88 },
+            { id: "1003", name: "王五", age: 18, score: 92 },
+            { id: "1004", name: "赵六", age: 20, score: 76 }
+        ];
+
+        const tbody = document.getElementById("student-tbody");
+        let htmlContent = "";
+
+        // 通过 forEach 循环及模板字符串拼接
+        students.forEach(student => {
+            htmlContent += `
+                <tr>
+                    <td>${student.id}</td>
+                    <td>${student.name}</td>
+                    <td>${student.age}</td>
+                    <td>${student.score}</td>
+                </tr>
+            `;
+        });
+
+        // 渲染到网页中
+        tbody.innerHTML = htmlContent;
+    </script>
+</body>
+</html>
