@@ -1,4 +1,41 @@
-greenlet==3.5.0
-playwright==1.59.0
-pyee==13.0.1
-typing_extensions==4.15.0
+# ==============================================
+# 集中实训课程 — Python 依赖清单
+# 基于全部代码实际导入语句整理
+# ==============================================
+
+# --- Web 应用框架 ---
+streamlit>=1.28.0
+
+# --- 大模型 API 调用 ---
+openai>=1.12.0
+
+# --- 环境变量管理 ---
+python-dotenv>=1.0.0
+
+# --- 后端 API 框架 ---
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+
+# --- 数据处理与分析 ---
+pandas>=2.0.0
+openpyxl>=3.1.0
+beautifulsoup4>=4.12.0
+
+# --- HTTP 请求 ---
+requests>=2.31.0
+
+# --- 数据模型校验 ---
+pydantic>=2.5.0
+
+# --- LangChain 核心与生态 ---
+langchain>=0.2.0
+langchain-openai>=0.1.0
+langchain-community>=0.2.0
+langchain-core>=0.2.0
+langchain-text-splitters>=0.2.0
+
+# --- LangGraph（Agent 图编排） ---
+langgraph>=0.2.0
+
+# --- 向量数据库 ---
+chromadb>=0.5.0
