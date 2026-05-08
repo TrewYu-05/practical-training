@@ -2,3 +2,13 @@ venv/
 .env
 
 .env
+
+kb.txt
+sample.txt
+chroma_db/
+practical-training/**/chroma_db/
+practical-training/**/code/chroma_db/
+practical-training/**/code/output.txt
+practical-training/**/code/output.html
+screenshot_day*.py
+practical-training/**/code/*.log
